@@ -1,0 +1,664 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Oswald:wght@200;300;400;500;600;700&family=PT+Sans:wght@400;700&display=swap');  
+*
+{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.body
+{
+    min-width: 1024px;
+    max-width: 1920px;
+    background-image: url("../images/fond_noir_accoustique.jpg");
+    background-size: cover;
+}
+
+.bloc_logo
+{
+    position: absolute;
+    top: 20px;
+    left: 80px; 
+    margin-top: 0px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    height: 65px;
+    width: 80px;
+    font-family: "Oswald";
+    font-weight: 200;
+}
+
+.conteneur_img
+{
+    width: 100%;
+    height: 50px;
+}
+
+.logo_txt
+{
+    color: white;
+    margin-top: 0;
+    margin-bottom: 2px;
+    font-size: 10px;
+}
+
+.logo_artSense
+{
+    max-width: 80px;
+}
+
+.header
+{
+    position: relative;
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 80px;  
+}
+
+
+.ligne_blanche
+{
+    width: 100%;
+    height: 3px;
+    background-color: white;
+}
+
+.ligne_haut
+{
+    margin-bottom: 5px;
+}
+
+.nav_barre
+{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 30%;
+    justify-content: space-between;
+    width: 600px;
+    height: 70px;
+    background-color: black;
+    transform: skew(-20deg);
+}
+
+.nav
+{
+    color: white;
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Oswald";
+    height: 100%;
+}
+
+.nav1
+{
+    color: black;
+    background-color: white;
+    height: 120%;   
+}
+
+.btn_connect_metamask
+{
+    position: absolute;
+    top: -20px; 
+    right: 10%;   
+    padding: 0 10px;      
+
+    border: solid white 1px;        
+    width: 100px;
+    height: 40px;
+    border-radius: 16px;
+    background-color: #141316;
+    color: white;
+    font-family: "Lato"; 
+    cursor: pointer; 
+    overflow: hidden;   
+    text-overflow: ellipsis;  
+    
+    transition: all 1s; 
+}
+
+.main
+{
+    margin-top: 40px;  
+    display: flex; 
+}
+.inventory
+{
+    width: 66%;
+    height: 500px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inventory_nav
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    height: 50px;
+    border-radius: 30px;
+    border-style: solid;
+    border-color: #E9ECEF;
+}
+
+.selection_bg
+{
+    z-index: -1;
+    position: absolute; 
+    left: 1.2%; 
+    width: 30%;
+    height: 80%;
+    background-image: linear-gradient(to right, #6A35EE,#5737EE, #795CEB);
+    border-radius: 46px;
+    transition: all 0.8s ease-out;
+}
+
+.selection
+{
+    font-family: "Lato";
+    font-weight: 100;             
+    font-size: 12px;         
+    color: white;
+    text-align: center; 
+    width: 33%;
+    padding: 20px 0;
+    cursor: pointer;  
+}
+
+.inventory_bloc
+{
+    width: 90%; 
+    height: 420px;  
+    border-radius: 16px;        
+    border: solid #E9ECEF 1px;  
+    display: flex;  
+    flex-wrap: wrap;   
+}
+
+#txt_connect_your_wallet_inventory
+{
+    margin: auto auto;
+    color: white;
+    font-family: "Oswald";
+}
+
+.nft_bloc
+{
+    position: relative;
+    height: 300px;  
+    width: 200px;   
+    border-radius: 16px;   
+    margin: 15px 15px 30px 15px;
+    padding: 20px;   
+    box-sizing: border-box;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    background-color: #1B1A1F;      
+}
+
+.nft_div_img
+{
+    width: 160px;
+    height: 200px;  
+    border-radius: 14px;
+
+    border: solid black;
+}
+
+.nft_div_img img
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+}
+
+.div_titre_nft
+{
+    width: 160px;
+    height: 25px;
+    margin: 10px 0 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Lato";
+    font-size: 12px;   
+    color: white;    
+}
+
+.bande
+{
+    height: 3px;
+    width: 35px;
+    background-image: linear-gradient(to right, #6A35EE,#5737EE, #795CEB);
+}
+
+.nft_description
+{
+    color: white;
+}
+.stake_btn
+{
+    position: absolute;
+    bottom: -6px;   
+
+    color: white;
+    font-family: "Oswald";
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #e91e63, #d9376d);
+}
+
+.stake_btn:hover
+{
+    cursor: pointer;
+    background-image: linear-gradient(to right, #ef2e6f, #ea497f);;
+}
+
+.unstake_btn
+{
+    position: absolute;
+    bottom: -6px;   
+
+    color: white;
+    font-family: "Oswald";
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #541ee9, #8546d7);
+}
+
+.unstake_btn:hover
+{
+    cursor:pointer;
+    background-image: linear-gradient(to right, #612fe9, #8f56da);
+}
+
+.info
+{
+    height: 500px;
+    width: 30%;   
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: space-between;
+  
+}
+
+.info_bloc1
+{   
+    position: relative;
+
+    height: 150px;  
+    width: 95%;     
+    border-radius: 20px;    
+    border: solid #E9ECEF 1px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+    margin-bottom: 30px;        
+}
+
+.info_bloc1_nav
+{
+
+
+    width: 60px;
+    height: 20px;   
+    position: relative;
+    top: -10px;   
+
+    display: flex;
+    align-items: center;  
+    border-radius: 20px;    
+    background-color: white;
+}
+
+.bouton_info    
+{
+    width: 28px;        
+    height: 16px;   
+    background-image: linear-gradient(to right, #1DB1DD, #23D0D2);
+    border-radius: 16px;
+    position: relative;
+    left: 2px;    
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    transition: all 1s;
+
+
+    cursor: pointer;
+}
+
+.nav_cercle
+{
+    width: 6px;
+    height: 6px;        
+    border-radius: 50%;
+    border: solid white 2px;        
+}
+
+#txt_connect_your_wallet_info
+{
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;   
+    font-family: "Oswald";
+    z-index: 1;
+}
+
+.carroussel_info_bloc1
+{
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    position: relative;
+    top: -5px;   
+
+    display: none;    
+
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.bloc1_partie1
+{
+    min-width: 100%;
+    height: 95%;       
+    position: relative;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition: all 1s;
+}
+
+.txt_xp
+{
+    margin: 20px 0 10px 0;
+    color: white;
+    font-family: "Lato";    
+}
+
+.barre_xp
+{
+    position: relative;
+    width: 85%;
+    height: 10px;   
+    border-radius: 20px;     
+    padding: 5px 5px;
+
+    background-color: #1B1A1F; 
+}
+
+.xp
+{
+    width: 5%;
+    height: 100%; 
+    border-radius: 20px 0 0 20px;          
+    background-color: rgb(116, 7, 225);
+    transition: all 5s ease-out;
+}
+
+.txt_nbXp
+{
+    color: white;
+    font-family: "Lato";
+    font-size: 11px; 
+    position: absolute;
+    top: 3px;  
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+.div_txt_partie1_info
+{
+    margin-top: 10px;
+    width: 70%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.partie1_info_txt_SousDiv
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div_txt_partie1_info h5
+{
+    margin-top: 4px;    
+    color: white;
+    font-family: "Lato";
+}
+
+.bloc1_partie2
+{    
+    position: relative;
+    left: 0px;
+
+    min-width: 100%;         
+    height: 95%;     
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    transition: all 1s;
+}
+
+.partie2_gauche
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 50%;
+    position: relative;   
+}
+
+.partie2_droite
+{
+    width: 50%;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
+
+.bloc1_partie2 img
+{
+    width: 95%;
+    height: auto;
+    border-radius: 16px;        
+}
+
+
+.bloc2
+{
+    width: 95%;
+    height: 120px; 
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.6);              
+    border: solid white 1px;
+    border-radius: 20px;           
+}
+
+.partie_basse_fleche
+{
+    width: 30px;
+    height: 16px;
+    border-radius: 20px;
+    background-color: black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+}
+
+.fleche_haut
+{
+    position: relative;
+    top: -8px;
+    border: solid #E9ECEF 2px;  
+}
+
+.fleche_border_haut
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3px;                    
+    width: 0;
+    height: 0;  
+    border-style: solid;
+    border-width: 0 4px 6px 4px;       
+    border-color: transparent transparent white transparent;
+}
+
+.bloc_div_classement
+{
+    width: 90%; 
+    height: 26px;                    
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #2F2F2F;       
+    margin-bottom: 3px;     
+    overflow: hidden;    
+}
+
+.last_div_classement
+{
+    margin-bottom: 0;   
+}
+
+.fleche_bas
+{
+    position: relative;
+    bottom: -9px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid #E9ECEF 2px;                
+}
+
+.fleche_border_bas
+{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 4px 0 4px;    
+    border-color: white transparent transparent transparent;           
+}
+
+
+.info_bloc3
+{    
+    margin-top: 20px;;
+    height: 170px;            
+    width: 95%;
+    padding: 0 10px;    
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bloc_barres_circulaires
+{
+    position: relative;
+    height: 95%;
+    width: 32%; 
+    border-radius: 16px;       
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;      
+}
+
+.small_circle     
+{
+    fill: none; 
+    stroke: url(#GradientColor);
+    stroke-width: 5px;
+    stroke-dasharray: 179;   
+}
+
+.big_circle
+{
+   fill: none; 
+   stroke: url(#GradientColor2);
+   stroke-width: 5px;
+   stroke-dasharray: 232;    
+}
+
+.placement_big_circle
+{
+    position: absolute;
+}
+
+.bloc_barres_circulaires_txt
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    color: white;
+    font-family: "Lato"; 
+    font-size: 16px;      
+}
+
+.bloc_graph
+{
+    width: 265px;   
+    height: 95%;    
+    border-radius: 16px;     
+    display: flex;
+    align-items: center;           
+}
+
+.img_graph2
+{   
+    width: 100%;
+    height: auto;                           
+}
+
+

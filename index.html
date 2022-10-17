@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style_marketplace_1.css"/>
+    <title>Art Sense marketplace</title>   
+</head>
+<body class="body">
+    <div class="bloc_logo">
+        <p class="logo_txt">Powered by</p>
+        <div class="conteneur_img">
+            <img class="logo_artSense" src="./images/logo_artSense_blanc.png" alt="logo Art Sense"/>
+        </div>
+    </div>
+    <header class="header">                <!-- positionner les éléments les uns au dessus autres avec z-index dans le css -->
+            <div class="ligne_blanche ligne_haut"></div>
+            <div class="ligne_blanche ligne_bas"></div>
+            <div class="nav_barre">
+                <div class="nav nav1"><h2>Inventory</h2></div>
+                <div class="nav nav2"><h2>Marketplace</h2></div>
+                <div class="nav nav3"><h2>DAO</h2></div>  
+            </div>
+            <button id="bouton" class="btn_connect_metamask" onclick="connectWallet()">Connect Metamask</button>
+    </header>
+    <main class="main">
+        <section class = "inventory">
+            <div class="inventory_nav">  
+                <div id="bouton_bg" class="selection_bg"></div>
+                <div id="selection_1" class="selection" onclick="bouton_inventory_transition_All()"><h3>All</h3></div>
+                <div id="selection_2" class="selection" onclick="bouton_inventory_transition_Staked()"><h3>Staked</h3></div>
+                <div id="selection_3" class="selection" onclick="bouton_inventory_transition_Unstaked()"><h3>Unstaked</h3></div>
+            </div>
+            <div class="inventory_bloc" id="inventory">
+                <div id="txt_connect_your_wallet_inventory">
+                    <p>Connect your wallet to display your NFTs</p>
+                </div>
+            </div>
+        </section>
+        <section class="info">
+            <div class="info_bloc1">
+
+                <div class="info_bloc1_nav">
+                    <button id="bouton_info" class="bouton_info" onclick="bouton_info_transition_gauche()"><div class="nav_cercle"></div></button>
+                </div>
+                <div id="txt_connect_your_wallet_info">
+                    <p>Connect your wallet to see your info</p>
+                </div>
+
+                <div class="carroussel_info_bloc1" id="carroussel_info_bloc1">
+                    <div class="bloc1_partie1" id="bloc1_partie1">
+                        <h4 class="txt_xp">XP balance</h4>
+                        <div id="barre_xp" class="barre_xp">
+                            <div class="xp"></div>
+                            <p id="xp" class="txt_nbXp">330/10 000</p>
+                        </div>
+                        <div class="div_txt_partie1_info">
+                            <div class="partie1_info_txt_SousDiv">
+                                <h5 class="txt_partie1_info">Staked item(s)</h5>
+                                <h5 id="nbStaked">2</h5>
+                            </div>
+                            <div class="partie1_info_txt_SousDiv">
+                                <h5 class="txt_partie1_info">Total time staked</h5>
+                                <h5 id="totalTimeStaked">330 h</h5>  
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="bloc1_partie2" id="bloc1_partie2">
+                        <div class="partie2_gauche">
+                            <img src="./images/graph_xp_earned.png" alt="xp earned graph"/>
+                        </div>
+                        <div class="partie2_droite">   
+                            <img src="./images/graph_volume.png" alt="volume graph"/>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="bloc2">
+                <div class="partie_basse_fleche fleche_haut"><div class="fleche_border_haut"></div></div>
+                <div class="bloc_div_classement"></div>
+                <div class="bloc_div_classement"></div>
+                <div class="bloc_div_classement"></div>
+                <div class="bloc_div_classement last_div_classement"></div>
+                <div class="partie_basse_fleche fleche_bas"><div class="fleche_border_bas"></div></div>
+            </div>
+            <div class="info_bloc3">
+                <div class="bloc_barres_circulaires">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px"> 
+                        <defs>
+                           <linearGradient id="GradientColor">
+                              <stop offset="0%" stop-color="#e91e63" />
+                              <stop offset="100%" stop-color="#673ab7" />
+                           </linearGradient>
+                        </defs>
+                        <circle class="small_circle" cx="80" cy="80" r="50" stroke-linecap="round" />
+                    </svg>
+                    <svg class="placement_big_circle" xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px"> 
+                        <defs>
+                           <linearGradient id="GradientColor2">
+                              <stop offset="0%" stop-color="#FFF" />
+                              <stop offset="100%" stop-color="#FFF" />   
+                           </linearGradient>
+                        </defs>
+                        <circle class="big_circle" cx="80" cy="80" r="60" stroke-linecap="round" />
+                    </svg>
+                    <div class="bloc_barres_circulaires_txt">
+                        <h4 class="txt_pourcentage">75 %</h4>
+                    </div>
+                </div>
+                <div class="bloc_graph">    
+                    <img class="img_graph2" src="./images/courbe.png" alt="courbe"/>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">              
+    </footer>
+    <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js" type="text/javascript"></script>  
+    <script src="./js/index.js"></script>    
+</body>
+</html>
