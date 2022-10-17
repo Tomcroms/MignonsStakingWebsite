@@ -179,17 +179,29 @@
     cursor: pointer;  
 }
 
-.inventory_bloc
+.inventory_carroussel
 {
     width: 90%; 
-    height: 420px;  
+    height: 420px;
     border-radius: 16px;        
-    border: solid #E9ECEF 1px;  
-    display: flex;  
-    flex-wrap: wrap;   
+    border: solid #E9ECEF 1px; 
+    display: flex;
+    padding: 0;
+    overflow: hidden; 
 }
 
-#txt_connect_your_wallet_inventory
+.inventory_bloc
+{
+    position: relative;
+    left: 0px;
+    min-width: 100%; 
+    height: 420px;   
+    display: flex;
+    flex-wrap: wrap;
+    transition: all 1s ease-out;
+}
+
+.txt_connect_your_wallet_inventory
 {
     margin: auto auto;
     color: white;

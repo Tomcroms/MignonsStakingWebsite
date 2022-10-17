@@ -733,13 +733,13 @@ async function connectWallet()
 		let accounts = await provider.send("eth_requestAccounts", []);
 		const signer = await provider.getSigner();
 		let account = accounts[0];
-		console.log(account);
 
         let bouton = document.getElementById("bouton");
         bouton.textContent = accounts[0];
         bouton.style.width = "140px";
 		bouton.removeAttribute("onclick");
 
+		displayNftAllOfOwner(account,provider);
 		displayNftUnstakedOfowner(account,provider);
 		displayNftStakedOfOwner(account,provider);
 		displayOwnerInfo(account,provider);
@@ -752,8 +752,59 @@ async function connectWallet()
 }
 
 //associer a chaque bloc nft son tokenID
-async function displayNftStakedOfOwner(account,provider)
+async function displayNftAllOfOwner(account,provider)
 {
+	document.getElementById("txt_connect_your_wallet_inventory_1").remove();
+	const erc721Contract = new ethers.Contract(ERC721_ADDRESS,ABI_ERC721,provider);
+	let nbUnstaked = parseInt((await erc721Contract.balanceOf(account)).toString());
+
+	for(let i=0; i<nbUnstaked;i++) 
+    {
+		let baseIPFS = "https://ipfs.io/ipfs/QmeMWVdBAR3Y61SwKJVLqhfsDMmtPMimqAa7LgDVAvxxR9/image";
+        let currentTokenId = (await erc721Contract.tokenOfOwnerByIndex(account,i)).toString();
+        
+        let bloc_nft = document.createElement("div");
+        bloc_nft.classList.add("nft_bloc");
+
+        let nft_div_img = document.createElement("div");
+        nft_div_img.classList.add("nft_div_img");
+
+        let img = document.createElement("img");
+        img.src = baseIPFS + currentTokenId.toString() +".jpg";
+
+        let div_titre_nft = document.createElement("div")
+        div_titre_nft.classList.add("div_titre_nft");
+        
+        let bande1 = document.createElement("div")
+        bande1.classList.add("bande");
+
+        let bande2 = document.createElement("div")
+        bande1.classList.add("bande");
+
+        let titreNFT = document.createElement("h3");
+        titreNFT.textContent = "Minion #" + currentTokenId.toString();
+
+        let p = document.createElement("p");
+        p.classList.add("nft_description");
+        p.textContent = "Description_NFT";
+
+        let stake_btn = document.createElement("div");
+        stake_btn.classList.add("stake_btn");
+        stake_btn.textContent = "Stake";
+		stake_btn.setAttribute("onclick","stakeItem()");	
+
+        //Ajout des éléments créés au DOM dans le bon ordre
+        document.getElementById("inventory").append(bloc_nft);
+        bloc_nft.append(nft_div_img);
+        nft_div_img.append(img);
+        bloc_nft.append(div_titre_nft);
+        div_titre_nft.append(bande1);
+        div_titre_nft.append(titreNFT);
+        div_titre_nft.append(bande2);
+        bloc_nft.append(p);
+        bloc_nft.append(stake_btn);
+    }
+
 	const stakingContract = new ethers.Contract(STAKING_ADDRESS,ABI_STAKING,provider);
 	let nbStaked = parseInt((await stakingContract.balanceOf(account)).toString());
 	let tabIDs = await stakingContract.tokensIDsOfOwner(account);
@@ -806,17 +857,17 @@ async function displayNftStakedOfOwner(account,provider)
     }
 }
 //associer a chaque bloc nft son tokenID
-async function displayNftUnstakedOfowner(account,provider)
+async function displayNftStakedOfOwner(account,provider)
 {
-	document.getElementById("txt_connect_your_wallet_inventory").remove();
-	const erc721Contract = new ethers.Contract(ERC721_ADDRESS,ABI_ERC721,provider);
-	let nbUnstaked = parseInt((await erc721Contract.balanceOf(account)).toString());
+	document.getElementById("txt_connect_your_wallet_inventory_2").remove();
+	const stakingContract = new ethers.Contract(STAKING_ADDRESS,ABI_STAKING,provider);
+	let nbStaked = parseInt((await stakingContract.balanceOf(account)).toString());
+	let tabIDs = await stakingContract.tokensIDsOfOwner(account);
 
-	for(let i=0; i<nbUnstaked;i++) 
+	for(let i=0; i<nbStaked;i++) 
     {
 		let baseIPFS = "https://ipfs.io/ipfs/QmeMWVdBAR3Y61SwKJVLqhfsDMmtPMimqAa7LgDVAvxxR9/image";
-        let currentTokenId = (await erc721Contract.tokenOfOwnerByIndex(account,i)).toString();
-		console.log("Token with the index "+i+" of the owner account is the token with the ID of "+currentTokenId);
+        let currentTokenId = tabIDs[i];
         
         let bloc_nft = document.createElement("div");
         bloc_nft.classList.add("nft_bloc");
@@ -826,7 +877,60 @@ async function displayNftUnstakedOfowner(account,provider)
 
         let img = document.createElement("img");
         img.src = baseIPFS + currentTokenId.toString() +".jpg";
-		console.log("Current IPFS path is "+ baseIPFS + currentTokenId.toString()+ ".jpg");
+
+        let div_titre_nft = document.createElement("div");
+        div_titre_nft.classList.add("div_titre_nft");
+        
+        let bande1 = document.createElement("div");
+        bande1.classList.add("bande");
+
+        let bande2 = document.createElement("div");
+        bande1.classList.add("bande");
+
+        let titreNFT = document.createElement("h3");
+        titreNFT.textContent = "Minion #" + currentTokenId.toString();
+
+        let p = document.createElement("p");
+        p.classList.add("nft_description");
+        p.textContent = "Description_NFT";
+
+        let unstake_btn = document.createElement("div");
+        unstake_btn.classList.add("unstake_btn");
+        unstake_btn.textContent = "Unstake";
+		unstake_btn.setAttribute("onclick","unstakeItem()");	
+
+        //Ajout des éléments créés au DOM dans le bon ordre
+        document.getElementById("inventory_2").append(bloc_nft);
+        bloc_nft.append(nft_div_img);
+        nft_div_img.append(img);
+        bloc_nft.append(div_titre_nft);
+        div_titre_nft.append(bande1);
+        div_titre_nft.append(titreNFT);
+        div_titre_nft.append(bande2);
+        bloc_nft.append(p);
+		bloc_nft.append(unstake_btn);
+    }
+}
+//associer a chaque bloc nft son tokenID
+async function displayNftUnstakedOfowner(account,provider)
+{
+	document.getElementById("txt_connect_your_wallet_inventory_3").remove();
+	const erc721Contract = new ethers.Contract(ERC721_ADDRESS,ABI_ERC721,provider);
+	let nbUnstaked = parseInt((await erc721Contract.balanceOf(account)).toString());
+
+	for(let i=0; i<nbUnstaked;i++) 
+    {
+		let baseIPFS = "https://ipfs.io/ipfs/QmeMWVdBAR3Y61SwKJVLqhfsDMmtPMimqAa7LgDVAvxxR9/image";
+        let currentTokenId = (await erc721Contract.tokenOfOwnerByIndex(account,i)).toString();
+        
+        let bloc_nft = document.createElement("div");
+        bloc_nft.classList.add("nft_bloc");
+
+        let nft_div_img = document.createElement("div");
+        nft_div_img.classList.add("nft_div_img");
+
+        let img = document.createElement("img");
+        img.src = baseIPFS + currentTokenId.toString() +".jpg";
 
         let div_titre_nft = document.createElement("div")
         div_titre_nft.classList.add("div_titre_nft");
@@ -850,7 +954,7 @@ async function displayNftUnstakedOfowner(account,provider)
 		stake_btn.setAttribute("onclick","stakeItem()");	
 
         //Ajout des éléments créés au DOM dans le bon ordre
-        document.getElementById("inventory").append(bloc_nft);
+        document.getElementById("inventory_3").append(bloc_nft);
         bloc_nft.append(nft_div_img);
         nft_div_img.append(img);
         bloc_nft.append(div_titre_nft);
@@ -869,16 +973,13 @@ async function displayOwnerInfo(account,provider)
 	document.getElementById("nbStaked").textContent = StringNbStaked;
 
 	let StringTotalTimeStaked = (await stakingContract.getStakingTime(account)).toString();	
-	let totalTimeStaked = parseInt(StringNbStaked)/3600;
-	StringNbStaked = totalTimeStaked.toString();
-	
 	document.getElementById("totalTimeStaked").textContent = StringTotalTimeStaked;
 
 	//Supprimer le txt "connect your wallet to see your info" et rend visible les infos
 	document.getElementById("txt_connect_your_wallet_info").remove();
 	document.getElementById("carroussel_info_bloc1").style.display = "flex";
 
-	let xp = (totalTimeStaked*1500).toFixed(3);
+	let xp = (parseInt(StringTotalTimeStaked)/500).toFixed(3);
 	document.getElementById("xp").textContent = xp.toString() + "/10 000";
 }
 
@@ -927,27 +1028,42 @@ function bouton_info_transition_droite()
 }
 
 function bouton_inventory_transition_All()
-{
-	let bouton = document.getElementById("selection_1");
+{	
 	let bouton_bg = document.getElementById("bouton_bg");
+	let inventory_bloc1 = document.getElementById("inventory");
+	let inventory_bloc2 = document.getElementById("inventory_2");
+	let inventory_bloc3 = document.getElementById("inventory_3");
 
 	bouton_bg.style.left =  "1.2%";
+	inventory_bloc1.style.left = "0%";
+	inventory_bloc2.style.left = "0%";
+	inventory_bloc3.style.left = "0%";
 }
 
 function bouton_inventory_transition_Staked()
 {
-	let bouton = document.getElementById("selection_2");
 	let bouton_bg = document.getElementById("bouton_bg");
+	let inventory_bloc1 = document.getElementById("inventory");
+	let inventory_bloc2 = document.getElementById("inventory_2");
+	let inventory_bloc3 = document.getElementById("inventory_3");
 
 	bouton_bg.style.left =  "34.7%";	
+	inventory_bloc1.style.left = "-100%";
+	inventory_bloc2.style.left = "-100%";
+	inventory_bloc3.style.left = "-100%";
 }
 
 function bouton_inventory_transition_Unstaked()
 {
-	let bouton = document.getElementById("selection_3");
 	let bouton_bg = document.getElementById("bouton_bg");
+	let inventory_bloc1 = document.getElementById("inventory");
+	let inventory_bloc2 = document.getElementById("inventory_2");
+	let inventory_bloc3 = document.getElementById("inventory_3");
 
 	bouton_bg.style.left =  "69%";
+	inventory_bloc1.style.left = "-200%";
+	inventory_bloc2.style.left = "-200%";
+	inventory_bloc3.style.left = "-200%";
 }
 
 /*
