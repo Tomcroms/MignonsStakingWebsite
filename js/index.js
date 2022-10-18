@@ -791,7 +791,7 @@ async function displayNftAllOfOwner(account,provider)
         let stake_btn = document.createElement("div");
         stake_btn.classList.add("stake_btn");
         stake_btn.textContent = "Stake";
-		stake_btn.setAttribute("onclick","stakeItem()");	
+		stake_btn.setAttribute("onclick","stakeItem("+currentTokenId+")");	
 
         //Ajout des éléments créés au DOM dans le bon ordre
         document.getElementById("inventory").append(bloc_nft);
@@ -842,7 +842,7 @@ async function displayNftAllOfOwner(account,provider)
         let unstake_btn = document.createElement("div");
         unstake_btn.classList.add("unstake_btn");
         unstake_btn.textContent = "Unstake";
-		unstake_btn.setAttribute("onclick","unstakeItem()");	
+		unstake_btn.setAttribute("onclick","unstakeItem("+currentTokenId+")");	
 
         //Ajout des éléments créés au DOM dans le bon ordre
         document.getElementById("inventory").append(bloc_nft);
@@ -897,7 +897,7 @@ async function displayNftStakedOfOwner(account,provider)
         let unstake_btn = document.createElement("div");
         unstake_btn.classList.add("unstake_btn");
         unstake_btn.textContent = "Unstake";
-		unstake_btn.setAttribute("onclick","unstakeItem()");	
+		unstake_btn.setAttribute("onclick","unstakeItem("+currentTokenId+")");	
 
         //Ajout des éléments créés au DOM dans le bon ordre
         document.getElementById("inventory_2").append(bloc_nft);
@@ -951,7 +951,7 @@ async function displayNftUnstakedOfowner(account,provider)
         let stake_btn = document.createElement("div");
         stake_btn.classList.add("stake_btn");
         stake_btn.textContent = "Stake";
-		stake_btn.setAttribute("onclick","stakeItem()");	
+		stake_btn.setAttribute("onclick","stakeItem("+currentTokenId+")");	
 
         //Ajout des éléments créés au DOM dans le bon ordre
         document.getElementById("inventory_3").append(bloc_nft);
@@ -983,20 +983,22 @@ async function displayOwnerInfo(account,provider)
 	document.getElementById("xp").textContent = xp.toString() + "/10 000";
 }
 
-async function stakeItem()
+async function stakeItem(tokenID)
 {
 	const provider = new ethers.providers.Web3Provider(window.ethereum);
-	const stakingContract = new ethers.Contract(STAKING_ADDRESS,ABI_STAKING,provider);
+	const signer = await provider.getSigner();
+	const stakingContract = new ethers.Contract(STAKING_ADDRESS,ABI_STAKING,signer);
 	await stakingContract.stake([tokenID]);
 	// + message d'info comme quoi la transac sur la blockchain n'est pas instantanée et que c'est normal que l'item n'apparaisse pas dans "staked tout de suite"
 }
 
-async function unstakeItem()
+async function unstakeItem(tokenID)
 {
 	const provider = new ethers.providers.Web3Provider(window.ethereum);
+	const signer = await provider.getSigner();
 	let accounts = await provider.send("eth_requestAccounts", []);
 	const account = accounts[0];
-	const stakingContract = new ethers.Contract(STAKING_ADDRESS,ABI_STAKING,provider);
+	const stakingContract = new ethers.Contract(STAKING_ADDRESS,ABI_STAKING,signer);
 	await stakingContract.unstakeMany(account,[tokenID]);
 	// + message d'info comme quoi la transac sur la blockchain n'est pas instantanée et que c'est normal que l'item n'apparaisse pas dans "staked tout de suite"
 }
