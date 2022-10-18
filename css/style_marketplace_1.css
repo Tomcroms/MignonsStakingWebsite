@@ -134,6 +134,7 @@
 }
 .inventory
 {
+    position: relative; 
     width: 66%;
     height: 500px;  
     display: flex;
@@ -177,6 +178,26 @@
     width: 33%;
     padding: 20px 0;
     cursor: pointer;  
+}
+
+.allow_staking
+{
+    position: absolute;
+    right: 10%;
+    top: 5px;
+    width: 75px;
+    height: 50px;
+    border-radius: 20px;
+    text-align: center;
+    background-image: linear-gradient(to right, #ee9f27,#e88504);
+    color: white;
+    font-family: "Lato";
+}
+
+.allow_staking:hover
+{
+    cursor: pointer;
+    background-image: linear-gradient(to right, #e9a746,#e99424);
 }
 
 .inventory_carroussel

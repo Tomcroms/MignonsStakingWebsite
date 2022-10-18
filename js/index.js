@@ -1068,6 +1068,15 @@ function bouton_inventory_transition_Unstaked()
 	inventory_bloc3.style.left = "-200%";
 }
 
+async function allow_staking()
+{
+	const provider = new ethers.providers.Web3Provider(window.ethereum);
+	const signer = await provider.getSigner();
+	const erc721Contract = new ethers.Contract(ERC721_ADDRESS,ABI_ERC721,signer);
+
+	await erc721Contract.setApprovalForAll(STAKING_ADDRESS,true);
+}
+
 /*
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const account = "0xe8E882Be9B98486b5e0eEd96CE39BAE619969bA2";
