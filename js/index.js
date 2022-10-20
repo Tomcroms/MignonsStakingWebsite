@@ -1,5 +1,5 @@
-const ERC721_ADDRESS = "0xe3fF0115e61FAE4C1Ad54bcCDd96daAcf8Df4A3B";
-const STAKING_ADDRESS = "0xFF25BF343f025Ade974BE02443f3ebA552030EaD";
+const ERC721_ADDRESS = "0xe64B705BFc7d80A656F202B3765553F9A27fcDF9";
+const STAKING_ADDRESS = "0xe11099d682583c23a717BD7862c02E3Ff9f74501";
 
 const ABI_ERC721 = [
 	{
@@ -974,6 +974,7 @@ async function displayOwnerInfo(account,provider)
 
 	let StringTotalTimeStaked = (await stakingContract.getStakingTime(account)).toString();	
 	document.getElementById("totalTimeStaked").textContent = StringTotalTimeStaked;
+	console.log(StringTotalTimeStaked);
 
 	//Supprimer le txt "connect your wallet to see your info" et rend visible les infos
 	document.getElementById("txt_connect_your_wallet_info").remove();
